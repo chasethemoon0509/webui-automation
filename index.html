@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <!-- 登录 -->
+    <div class="content">
+        <h1>注册并登录</h1>
+        <h3>账号：6-16 位，字母开头，不能纯字母或数字。密码：6-16 位，只能是字母和数字</h3>
+        <h4 class="login_result"></h4>
+        <form name="login_form" onsubmit="return login()" style="display: flex;flex-direction: column;">
+            <input type="text" placeholder="请输入账号" id="account" class="account" name="account" maxlength="16">
+            <input type="password" placeholder="请输入密码" id="password" class="password" name="password" max="16">
+            <input type="submit" value="登录">
+        </form>
+    </div>
+    <hr>
+    
+
+</body>
+<script>
+    var account_regx = /^(?![0-9]+$)(?![a-zA-Z]+$)[a-z]([a-z0-9]{6,16})$/
+    var password_regx = /^[0-9a-zA-Z]{6,16}$/
+
+
+    // 登录
+    function login() {
+        var result = document.querySelector('.login_result')
+        if (account_regx.test(login_form.account.value) && password_regx.test(login_form.password.value)) {
+            result.innerHTML = '登录结果：成功'
+            result.style.color = 'green'
+            localStorage.setItem('token', `${login_form.account.value}+${login_form.password.value}`)
+            return true
+        } else {
+            result.innerHTML = '登录结果：失败'
+            result.style.color = 'red'
+            return false
+        }
+    }
+
+</script>
+<style>
+    .content {
+        width: 80%;
+        margin: 0 auto;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+</style>
+</html>
