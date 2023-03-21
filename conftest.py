@@ -1,4 +1,6 @@
 import pytest
+from common.directory import root_path
+import yaml
 
 
 def pytest_addoption(parser):
@@ -17,16 +19,17 @@ def pytest_addoption(parser):
     )
 
 
-@pytest.fixture
-def a(request):
-    print('值为：', request.config.getoption('--browser'))
-    print('值为：', request.config.getoption('--easyreport'))
 
-
-def pytest_terminal_summary(terminalreporter, exitstatus, config):
-    # print(terminalreporter.stats['passed'][0].__dict__)
-
-
-    print("用例总数: ", terminalreporter._numcollected)
-    # print("详细数据：", terminalreporter.stats)
-    print(terminalreporter._session.__dict__)
+# @pytest.fixture
+# def a(request):
+#     print('值为：', request.config.getoption('--browser'))
+#     print('值为：', request.config.getoption('--easyreport'))
+#
+#
+# def pytest_terminal_summary(terminalreporter, exitstatus, config):
+#     # print(terminalreporter.stats['passed'][0].__dict__)
+#
+#
+#     print("用例总数: ", terminalreporter._numcollected)
+#     # print("详细数据：", terminalreporter.stats)
+#     print(terminalreporter._session.__dict__)

@@ -1,6 +1,8 @@
 import pytest
 from selenium import webdriver
 from selenium.webdriver.chrome.service import Service
+from common.directory import root_path
+import yaml
 
 
 @pytest.fixture(scope='class')
@@ -12,12 +14,16 @@ def get_driver(request):
     :return:
     """
     browser = request.config.getoption('--browser')
+
     if browser.lower() == 'chrome':
         exe_path = Service(r'D:\Python37\chromedriver.exe')
         driver = webdriver.Chrome(service=exe_path)
+        yield driver
+        driver.close()
     elif browser.lower() == 'firefox':
-        exe_path = Service(r'D:\Python37\geckodriver.exe')
         driver = webdriver.Firefox(firefox_binary=r'C:\Program Files\Mozilla Firefox\firefox.exe')
+        yield driver
+        driver.close()
     """
         有时候因为某些原因，我们不想所有用例都从登录开始执行，或者是因为 web 项目采用了比较麻烦的登录验证方式，不容易处理。
 
@@ -37,8 +43,8 @@ def get_driver(request):
                             
                             
     """
-    yield driver
-    driver.close()
+
+
 
 
 
