@@ -8,7 +8,7 @@ import yaml
 @pytest.fixture(scope='class')
 def get_driver(request):
     """
-    实例化 driver 对象并返回，当没有对象调用此 fixture 时，再执行 yield 后面的语句，后面的语句大多数都是测试清理操作。
+    实例化 driver 对象并返回，当没有对象调用此 fixture 时，再执行 yield 后面的语句，后面的语 句大多数都是测试清理操作。
 
     和此 conftest.py 文件在同一目录中的测试用例都可以调用这个 fixture
     :return:
