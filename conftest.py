@@ -1,6 +1,9 @@
-import pytest
-from common.directory import root_path
-import yaml
+"""
+项目整体层面的 conftest.py，区别于测试用例层面的 conftest.py
+
+这里暂时只实现自定义参数、和测试结果的简单统计
+"""
+from utils.send_email import send_email
 
 
 def pytest_addoption(parser):
@@ -19,17 +22,17 @@ def pytest_addoption(parser):
     )
 
 
+def pytest_terminal_summary(terminalreporter):
+    """
+    这个钩子函数收集测试结果数据
+    """
+    total = terminalreporter._numcollected
+    passed = len(terminalreporter.stats.get('passed', []))
+    failed = len(terminalreporter.stats.get('failed', []))
+    xfailed = len(terminalreporter.stats.get('xfailed', []))
+    skipped = len(terminalreporter.stats.get('skipped', []))
+    """
+    最后将大致的测试结果数据传给邮件发送方法
+    """
+    send_email(total, passed, failed, xfailed, skipped)
 
-# @pytest.fixture
-# def a(request):
-#     print('值为：', request.config.getoption('--browser'))
-#     print('值为：', request.config.getoption('--easyreport'))
-#
-#
-# def pytest_terminal_summary(terminalreporter, exitstatus, config):
-#     # print(terminalreporter.stats['passed'][0].__dict__)
-#
-#
-#     print("用例总数: ", terminalreporter._numcollected)
-#     # print("详细数据：", terminalreporter.stats)
-#     print(terminalreporter._session.__dict__)
