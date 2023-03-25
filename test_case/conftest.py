@@ -1,8 +1,11 @@
+"""
+作用于 test_case 包内的 conftest.py
+
+包含 webdriver 对象的初始化等方法
+"""
 import pytest
 from selenium import webdriver
 from selenium.webdriver.chrome.service import Service
-from common.directory import root_path
-import yaml
 
 
 @pytest.fixture(scope='class')
