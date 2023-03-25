@@ -1,12 +1,12 @@
+"""
+loguru 日志封装
+"""
 import sys
 import os
 import time
-from typing import Optional
-
-import pytest
 from loguru import logger
 from common.directory import output_path, root_path
-import yaml
+
 
 log_file_directory = ''
 
@@ -22,8 +22,6 @@ class Log:
 
         global log_file_directory
         log_file_directory = output_path + time.strftime('%Y-%m-%d-%H-%M-%S', time.localtime()) + '/'
-
-
 
         if not os.path.exists(log_file_directory):
             os.mkdir(log_file_directory)
