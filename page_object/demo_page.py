@@ -1,6 +1,8 @@
-from selenium.webdriver.common.by import By
+"""
+页面类，封装对应的前端页面里的功能操作
+"""
 from common.page import Page
-from page_locator.demo_page_locator import *
+from locator_object.demo_page_locator import *
 from common.directory import root_path
 
 
