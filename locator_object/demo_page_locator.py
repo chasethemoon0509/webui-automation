@@ -1,3 +1,6 @@
+"""
+存放对应页面的元素对象，包括元素属性值和定位器
+"""
 from selenium.webdriver.common.by import By
 # 账号输入框
 account_input_ele = (By.ID, 'account')
